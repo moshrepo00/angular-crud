@@ -1,3 +1,17 @@
-<p>
-    home works!
-</p>
+<section class="home-component">
+    <div *ngFor="let event of dataService.events; let i = index;" class="event">
+        <h1>
+            {{event?.name}}
+        </h1>
+        <p>
+            {{event?.date}}
+        </p>
+        <p>
+            {{event?.location}}
+        </p>
+        <div>
+            <img [src]="event?.image" width="200px" height="200px" alt="">
+        </div>
+        <button [routerLink]="[event?.url]">View Event Page</button>
+    </div>
+</section>
