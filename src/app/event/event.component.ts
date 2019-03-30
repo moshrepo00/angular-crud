@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {NavigationEnd, Router} from '@angular/router';
+import {DataProviderService} from '../data-provider.service';
 
 
 @Component({
@@ -8,12 +9,18 @@ import {Router} from '@angular/router';
     styleUrls: ['./event.component.sass']
 })
 export class EventComponent implements OnInit {
+    currentEvent: any;
 
-    constructor(public router: Router) {
+    constructor(public router: Router, public dataService: DataProviderService) {
     }
 
     ngOnInit() {
-        console.log(this.router.url);
+        this.dataService.getEvents()
+            .subscribe((data: Array<any>) => {
+                this.currentEvent = data.filter((event: any) => this.router.url === event.url);
+                console.log('testing current event', this.currentEvent);
+            });
+
     }
 
 }
