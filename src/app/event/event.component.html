@@ -1,3 +1,36 @@
-<p>
-  event works!
-</p>
+<section class="home-component">
+    <div *ngFor="let event of currentEvent; let i = index;" class="event">
+        <h1>
+            {{event?.name}}
+        </h1>
+        <p>
+            {{event?.date}}
+        </p>
+        <p>
+            {{event?.location}}
+        </p>
+        <p>
+            {{event?.description}}
+        </p>
+        <div>
+            <h2>Tickets: </h2>
+            <ul>
+                <li *ngFor="let ticket of event?.tickets">
+                    <span>
+                        {{ticket?.name}}
+                    </span>
+                    <span>
+                        <input type="number" min="0" [max]="ticket.available" [(ngModel)]="ticket.selected">
+                    </span>
+                    <span>
+                        Tickets remaining: {{ticket.available - ticket.selected}}
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <button>Check out</button>
+        <div>
+            <img [src]="event?.image" width="200px" height="200px" alt="">
+        </div>
+    </div>
+</section>

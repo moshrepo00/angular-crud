@@ -9,7 +9,7 @@ import {DataProviderService} from '../data-provider.service';
     styleUrls: ['./event.component.sass']
 })
 export class EventComponent implements OnInit {
-    currentEvent: any;
+    currentEvent: Array<any>;
 
     constructor(public router: Router, public dataService: DataProviderService) {
     }
@@ -18,6 +18,15 @@ export class EventComponent implements OnInit {
         this.dataService.getEvents()
             .subscribe((data: Array<any>) => {
                 this.currentEvent = data.filter((event: any) => this.router.url === event.url);
+                // this.currentEvent = this.currentEvent((event) => this.)
+                this.currentEvent[0].tickets.forEach((ticket) => {
+                    ticket.selected = 0;
+                    if (+ticket.available) {
+                        ticket.available = +ticket.available;
+                    } else {
+                        ticket.available = 0;
+                    }
+                });
                 console.log('testing current event', this.currentEvent);
             });
 
