@@ -20,15 +20,15 @@
                         {{ticket?.name}}
                     </span>
                     <span>
-                        <input type="number" min="0" [max]="ticket.available" [(ngModel)]="ticket.selected">
+                        <input type="number" min="0" [max]="ticket?.available" [(ngModel)]="ticket.selected">
                     </span>
                     <span>
-                        Tickets remaining: {{ticket.available - ticket.selected}}
+                        Tickets remaining: {{ticket?.available - ticket.selected}}
                     </span>
+                    <button (click)="checkout(event?._id, ticket?._id, ticket?.available, ticket?.selected)">Check out</button>
                 </li>
             </ul>
         </div>
-        <button>Check out</button>
         <div>
             <img [src]="event?.image" width="200px" height="200px" alt="">
         </div>

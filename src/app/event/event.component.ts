@@ -14,6 +14,12 @@ export class EventComponent implements OnInit {
     constructor(public router: Router, public dataService: DataProviderService) {
     }
 
+    checkout(eventId, ticketId, available, selected) {
+        console.log(eventId, ticketId, available, selected);
+        this.dataService.updateTickets(eventId, ticketId, available, selected)
+            .subscribe((data) => console.log('ticket updated'));
+    }
+
     ngOnInit() {
         this.dataService.getEvents()
             .subscribe((data: Array<any>) => {
