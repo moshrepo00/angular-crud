@@ -16,7 +16,7 @@ export class AppComponent {
     constructor(public router: Router, public dataService: DataProviderService) {
         this.dataService.getEvents()
             .subscribe((data: Array<any>) => {
-                console.log('main app component');
+                console.log('app component', data);
                 this.dataService.events = data;
             });
     }
