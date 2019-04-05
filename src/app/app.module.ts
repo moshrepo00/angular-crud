@@ -7,13 +7,16 @@ import {HomeComponent} from './home/home.component';
 import {HttpClientModule} from '@angular/common/http';
 import {EventComponent} from './event/event.component';
 import {FormsModule} from '@angular/forms';
+import {CheckoutComponent} from './checkout/checkout.component';
+
 
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
-        EventComponent
+        EventComponent,
+        CheckoutComponent
     ],
     imports: [
         BrowserModule,

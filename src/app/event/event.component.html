@@ -29,6 +29,10 @@
                 </li>
             </ul>
         </div>
+        <button (click)="updateAllTickets()">Update all tickets</button>
+        <div>
+            <button [routerLink]="[event?.url, 'checkout']">Checkout</button>
+        </div>
         <div>
             <img [src]="event?.image" width="200px" height="200px" alt="">
         </div>

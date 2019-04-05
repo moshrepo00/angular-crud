@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {DataProviderService} from '../data-provider.service';
+import {forkJoin} from 'rxjs';
 
 
 @Component({
@@ -18,6 +19,17 @@ export class EventComponent implements OnInit {
         console.log(eventId, ticketId, available, selected);
         this.dataService.updateTickets(eventId, ticketId, available, selected)
             .subscribe((data) => console.log('ticket updated'));
+    }
+
+    updateAllTickets() {
+        console.log('update all tickets', this.currentEvent);
+        const observableArr = [];
+        this.currentEvent[0].tickets.forEach((item) => {
+            const observable = this.dataService.updateTickets(this.currentEvent[0]._id, item._id, item.available, item.selected);
+            observableArr.push(observable);
+        });
+        forkJoin(observableArr)
+            .subscribe(() => console.log('tickets updated'));
     }
 
     ngOnInit() {
