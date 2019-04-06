@@ -10,7 +10,6 @@ import {FormsModule} from '@angular/forms';
 import {CheckoutComponent} from './checkout/checkout.component';
 
 
-
 @NgModule({
     declarations: [
         AppComponent,
