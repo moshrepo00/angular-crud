@@ -9,7 +9,7 @@ import {Cacheable} from 'ngx-cacheable';
 })
 export class DataProviderService {
 
-    endpoint = 'http://localhost:8000';
+    endpoint = 'https://stormy-citadel-35326.herokuapp.com';
     events: Array<any>;
     currentEvent: object;
     å;
