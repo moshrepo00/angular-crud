@@ -12,6 +12,7 @@ export class DataProviderService {
     endpoint = 'http://localhost:8000';
     events: Array<any>;
     currentEvent: object;
+    å;
 
     @Cacheable()
     getEvents(): Observable<any> {
@@ -20,7 +21,7 @@ export class DataProviderService {
 
     updateTickets(eventId: string, ticketId: string, available: number, selected: number) {
         const ticketCount = available - selected;
-        const headers = {headers: new HttpHeaders({'Content-Type': 'application/json', responseType: 'text'})};
+        const headers = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
         const reqBody = {
             available: ticketCount.toString()
         };
