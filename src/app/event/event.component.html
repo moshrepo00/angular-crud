@@ -1,6 +1,6 @@
 <section class="home-component">
     <div class="container">
-        <div *ngFor="let event of currentEvent; let i = index;">
+        <div *ngFor="let event of dataService.currentEvent; let i = index;">
             <div>
                 <img [src]="event?.image" width="100%" height="300px" alt="">
             </div>
@@ -40,20 +40,28 @@
                 </p>
                 <div>
                     <h2>Tickets: </h2>
-                    <ul>
-                        <li *ngFor="let ticket of event?.tickets">
-                            <span>{{ticket?.name}}</span>
-                            <mat-form-field>
-                                <input
-                                        matInput
-                                        type="number"
-                                        min="0"
-                                        [max]="ticket?.available"
-                                        [(ngModel)]="ticket.selected"
+                    <ul class="list">
+                        <li *ngFor="let ticket of event?.tickets" class="ticket">
+                            <div class="ticket-info">
+                                <div>{{ticket?.name}}:</div>
+                                <div class="tickets-remaining" *ngIf="ticket?.available !== 'null'">
+                                    <span *ngIf="ticket?.available !== ticket.selected">(Tickets remaining: {{ticket?.available - ticket.selected}})</span>
+                                    <span class="sold-out" *ngIf="ticket?.available === ticket.selected">SOLD OUT!</span>
+                                </div>
+                            </div>
+                            <div class="material-field">
+                                <mat-form-field>
+                                    <input
+                                            matInput
+                                            type="number"
+                                            min="0"
+                                            placeholder="*Select Quantity"
+                                            [max]="ticket?.available"
+                                            [(ngModel)]="ticket.selected"
 
-                                />
-                            </mat-form-field>
-                            <span>Tickets remaining: {{ticket?.available - ticket.selected}}</span>
+                                    />
+                                </mat-form-field>
+                            </div>
                         </li>
                     </ul>
                 </div>

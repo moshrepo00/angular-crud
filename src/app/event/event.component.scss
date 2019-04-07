@@ -5,7 +5,7 @@
 
 .container {
   background: #fff;
-  margin-top: 20px;
+  margin: 20px 0;
   border-radius: 5px;
 }
 
@@ -37,4 +37,29 @@ a {
 
 ul {
   list-style-type: none;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticket-info {
+  display: flex;
+}
+
+.tickets-remaining {
+  padding-left: 10px;
+}
+
+.material-field {
+  &::ng-deep {
+    .mat-form-field-flex {
+      width: 100px;
+    }
+  }
+}
+
+.sold-out {
+  color: #dd053e;
 }

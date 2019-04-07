@@ -27,7 +27,7 @@ export class CheckoutComponent implements OnInit {
     ngOnInit() {
         this.dataService.getEvents()
             .subscribe((data: Array<any>) => {
-                this.currentEvent = data.filter((event: any) => this.router.url.includes(event.url));
+                this.dataService.currentEvent = data.filter((event: any) => this.router.url.includes(event.url));
                 console.log('testing current event', this.currentEvent);
             });
 

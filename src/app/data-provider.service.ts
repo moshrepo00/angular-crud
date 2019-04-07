@@ -11,7 +11,7 @@ export class DataProviderService {
 
     endpoint = 'https://event-node-api.herokuapp.com';
     events: Array<any>;
-    currentEvent: object;
+    currentEvent: Array<any>;
 
     @Cacheable()
     getEvents(): Observable<any> {

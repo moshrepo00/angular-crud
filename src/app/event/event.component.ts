@@ -37,17 +37,17 @@ export class EventComponent implements OnInit {
         // const myDate = moment('2019-06-01 19:00:00').format('D MMM (ddd) YYYY hA');
         this.dataService.getEvents()
             .subscribe((data: Array<any>) => {
-                this.currentEvent = data.filter((event: any) => this.router.url === event.url);
-                this.currentEvent[0].date = moment(this.currentEvent[0].date).format('D MMM (ddd) YYYY hA');
-                this.currentEvent[0].tickets.forEach((ticket) => {
+                this.dataService.currentEvent = data.filter((event: any) => this.router.url === event.url);
+                this.dataService.currentEvent[0].date = moment(this.dataService.currentEvent[0].date).format('D MMM (ddd) YYYY hA');
+                this.dataService.currentEvent[0].tickets.forEach((ticket) => {
                     ticket.selected = 0;
                     if (+ticket.available) {
                         ticket.available = +ticket.available;
                     } else {
-                        ticket.available = 0;
+                        // ticket.available = 0;
                     }
                 });
-                console.log('testing current event', this.currentEvent);
+                console.log('testing current event', this.dataService.currentEvent);
             });
 
     }
