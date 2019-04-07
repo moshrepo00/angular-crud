@@ -38,6 +38,9 @@ export class CheckoutComponent implements OnInit {
         });
         forkJoin(observableArr)
             .subscribe(() => console.log('tickets updated'));
+
+        this.dataService.createGuest(this.dataService.currentEvent[0]._id, this.formObj.firstName, this.formObj.lastName, this.formObj.email, this.formObj.number)
+            .subscribe((data) => console.log('guest created'));
     }
 
     constructor(public router: Router, public dataService: DataProviderService) {

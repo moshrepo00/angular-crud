@@ -4,12 +4,11 @@
             <div>
                 <img [src]="event?.image" width="100%" height="300px" alt="">
             </div>
-            <button (click)="activateModal()">Open Modal</button>
             <div class="content-container">
                 <h1 class="title">
                     {{event?.name}}
                 </h1>
-                <div>
+                <div class="items">
                     <span>
                           <fa name="calendar"></fa>
                     </span>
@@ -17,7 +16,7 @@
                         {{event?.date}}
                     </span>
                 </div>
-                <div>
+                <div class="items">
                     <span>
                        <fa name="map-marker" class="fa-lg"></fa>
                     </span>
@@ -25,20 +24,17 @@
                         {{event?.location}}
                     </a>
                 </div>
-                <div class="share">
-                    <p>
-                        Share
-                    </p>
+                <div class="share items">
+                    <h2>
+                        Share:
+                    </h2>
                     <div class="share-icons">
-                        <fa name="facebook" class="fa-lg"></fa>
-                        <fa name="twitter" class="fa-lg"></fa>
-                        <fa name="envelope" class="fa-lg"></fa>
-                        <fa name="linkedin" class="fa-lg"></fa>
+                        <fa name="facebook" class="fa-lg icon"></fa>
+                        <fa name="twitter" class="fa-lg icon"></fa>
+                        <fa name="envelope" class="fa-lg icon"></fa>
+                        <fa name="linkedin" class="fa-lg icon"></fa>
                     </div>
                 </div>
-                <p>
-                    {{event?.description}}
-                </p>
                 <div>
                     <h2>Tickets: </h2>
                     <ul class="list">
@@ -68,8 +64,17 @@
                         </li>
                     </ul>
                 </div>
-                <div>
-                    <button [routerLink]="[event?.url, 'checkout']" mat-raised-button color="primary" [disabled]="!ticketSelected">Checkout</button>
+                <div class="btn-container">
+                    <button mat-raised-button color="accent" class="exit-btn" [routerLink]="['/']">Exit</button>
+                    <button [routerLink]="[event?.url, 'checkout']" mat-raised-button color="primart" [disabled]="!ticketSelected">Checkout</button>
+                </div>
+                <div class="desc-container">
+                    <h3>
+                        Description
+                    </h3>
+                    <p>
+                        {{event?.description}}
+                    </p>
                 </div>
             </div>
         </div>
@@ -77,10 +82,3 @@
 
 </section>
 
-<div class="modal" *ngIf="showModal">
-    <div class="modal-guts">
-        Modal
-        <button (click)="showModal=false">Close</button>
-    </div>
-</div>
-<div class="modal-overlay" (click)="showModal=false" *ngIf="showModal"></div>

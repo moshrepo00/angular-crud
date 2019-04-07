@@ -8,7 +8,7 @@
                 <h1 class="title">
                     {{event?.name}}
                 </h1>
-                <form (ngSubmit)="onSubmit()" #checkoutForm="ngForm">
+                <form (ngSubmit)="updateAllTickets()" #checkoutForm="ngForm">
                     <!--<label for="firstName">First Name</label>-->
                     <!--<input type="text" id="firstName" name="firstName" [(ngModel)]="formObj.firstName" #firstName>-->
                     <div class="material-field">
@@ -37,12 +37,17 @@
                     <!--<button [routerLink]="[event?.url, 'checkout']" mat-raised-button color="primary" [disabled]="!ticketSelected">Checkout</button>-->
                     <button mat-raised-button color="primary" type="submit" [disabled]="number.invalid || email.invalid || firstName.invalid || lastName.invalid" (click)="showModal=true">Confirm</button>
                 </form>
-                <div>
-                    <h2>Tickets: </h2>
+                <div class="ticket-section">
                     <ul class="list">
                         <li *ngFor="let ticket of event?.tickets" class="ticket">
                             <div class="ticket-info">
-                                <div *ngIf="ticket?.selected">{{ticket?.name}}: {{ticket?.selected}}</div>
+                                <div *ngIf="ticket?.selected">
+                                    <h3>{{event?.name}} - {{ticket?.name}}</h3>
+                                    <div>
+                                        {{ticket?.date}}
+                                    </div>
+                                    <div>{{ticket?.selected}} tickets</div>
+                                </div>
                             </div>
                             <!--<div class="material-field">-->
                             <!--<mat-form-field>-->
@@ -69,8 +74,15 @@
 
 <div class="modal" *ngIf="showModal">
     <div class="modal-guts">
-        Modal
-        <button (click)="showModal=false">Close</button>
+        <div>
+            Checkout successful, you have successfully purchased your ticket!!
+        </div>
+        <div>
+            Please view the network tab to double check :=)
+        </div>
+        <div>
+            <button mat-raised-button color="primary" (click)="showModal=false">Checkout</button>
+        </div>
     </div>
 </div>
 <div class="modal-overlay" (click)="showModal=false" *ngIf="showModal"></div>

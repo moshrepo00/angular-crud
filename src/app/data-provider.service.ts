@@ -9,7 +9,7 @@ import {Cacheable} from 'ngx-cacheable';
 })
 export class DataProviderService {
 
-    endpoint = 'https://event-node-api.herokuapp.com';
+    endpoint = 'http://localhost:8000';
     events: Array<any>;
     currentEvent: Array<any>;
 
@@ -26,6 +26,17 @@ export class DataProviderService {
         };
         // const ticketsRemaining = this.t
         return this.http.put(`${this.endpoint}/events/${eventId}/tickets/${ticketId}/update`, JSON.stringify(reqBody), headers);
+    }
+
+    createGuest(eventId: string, firstName: string, lastName: string, phone: string, email: string) {
+        const headers = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
+        const reqBody = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            phone: phone.toString()
+        };
+        return this.http.post(`${this.endpoint}/events/${eventId}/guests/create`, JSON.stringify(reqBody), headers);
     }
 
     constructor(public http: HttpClient) {
