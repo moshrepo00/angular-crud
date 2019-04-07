@@ -7,7 +7,7 @@ import {forkJoin} from 'rxjs';
 @Component({
     selector: 'app-event',
     templateUrl: './event.component.html',
-    styleUrls: ['./event.component.sass']
+    styleUrls: ['./event.component.scss']
 })
 export class EventComponent implements OnInit {
     currentEvent: Array<any>;

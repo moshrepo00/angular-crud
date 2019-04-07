@@ -5,7 +5,7 @@ import {DataProviderService} from '../data-provider.service';
 @Component({
     selector: 'app-checkout',
     templateUrl: './checkout.component.html',
-    styleUrls: ['./checkout.component.sass']
+    styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
 
