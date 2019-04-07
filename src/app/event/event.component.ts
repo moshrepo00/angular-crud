@@ -13,8 +13,14 @@ import * as moment from 'moment';
 export class EventComponent implements OnInit {
     currentEvent: Array<any>;
     ticketSelected: boolean;
+    showModal: boolean;
 
     constructor(public router: Router, public dataService: DataProviderService) {
+    }
+
+    activateModal() {
+        console.log('clicked');
+        this.showModal = true;
     }
 
     handleTicketUpdate() {

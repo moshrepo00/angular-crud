@@ -8,12 +8,41 @@
                 <h1 class="title">
                     {{event?.name}}
                 </h1>
+                <form (ngSubmit)="onSubmit()" #checkoutForm="ngForm">
+                    <!--<label for="firstName">First Name</label>-->
+                    <!--<input type="text" id="firstName" name="firstName" [(ngModel)]="formObj.firstName" #firstName>-->
+                    <div class="material-field">
+                        <mat-form-field>
+                            <input matInput required type="text" placeholder="First Name" id="firstName" name="firstName" [(ngModel)]="formObj.firstName" #firstName="ngModel">
+                        </mat-form-field>
+                        <!--{{firstName.invalid}}-->
+
+                        <!--<label for="lastName">Last Name</label>-->
+                        <!--<input type="text" id="lastName" name="lastName" [(ngModel)]="formObj.lastName" #lastName>-->
+                        <mat-form-field>
+                            <input matInput required type="text" placeholder="Last Name" id="lastName" name="lastName" [(ngModel)]="formObj.lastName" #lastName="ngModel">
+                        </mat-form-field>
+                        <!--{{lastName.invalid}}-->
+                        <!--<label for="email">Email</label>-->
+                        <!--<input type="email" id="email" name="email" [(ngModel)]="formObj.email" #email>-->
+                        <mat-form-field>
+                            <input matInput required type="email" placeholder="Email" id="email" name="email" [(ngModel)]="formObj.email" #email="ngModel">
+                        </mat-form-field>
+                        <!--{{email.invalid}}-->
+                        <mat-form-field>
+                            <input matInput required type="text" placeholder="Phone Number" id="number" name="number" [(ngModel)]="formObj.number" #number="ngModel">
+                        </mat-form-field>
+                        <!--{{number.invalid}}-->
+                    </div>
+                    <!--<button [routerLink]="[event?.url, 'checkout']" mat-raised-button color="primary" [disabled]="!ticketSelected">Checkout</button>-->
+                    <button mat-raised-button color="primary" type="submit" [disabled]="number.invalid || email.invalid || firstName.invalid || lastName.invalid" (click)="showModal=true">Confirm</button>
+                </form>
                 <div>
                     <h2>Tickets: </h2>
                     <ul class="list">
                         <li *ngFor="let ticket of event?.tickets" class="ticket">
                             <div class="ticket-info">
-                                <div>{{ticket?.name}}: {{ticket.selected}}</div>
+                                <div *ngIf="ticket?.selected">{{ticket?.name}}: {{ticket?.selected}}</div>
                             </div>
                             <!--<div class="material-field">-->
                             <!--<mat-form-field>-->
@@ -33,34 +62,16 @@
                         </li>
                     </ul>
                 </div>
-                <form (ngSubmit)="onSubmit()" #checkoutForm="ngForm">
-                    <!--<label for="firstName">First Name</label>-->
-                    <!--<input type="text" id="firstName" name="firstName" [(ngModel)]="formObj.firstName" #firstName>-->
-                    <div class="material-field">
-                        <mat-form-field>
-                            <input matInput type="text" placeholder="First Name" id="firstName" name="firstName" [(ngModel)]="formObj.firstName" #firstName>
-                        </mat-form-field>
-
-                        <!--<label for="lastName">Last Name</label>-->
-                        <!--<input type="text" id="lastName" name="lastName" [(ngModel)]="formObj.lastName" #lastName>-->
-                        <mat-form-field>
-                            <input matInput type="text" placeholder="Last Name" id="lastName" name="lastName" [(ngModel)]="formObj.lastName" #lastName>
-                        </mat-form-field>
-
-                        <!--<label for="email">Email</label>-->
-                        <!--<input type="email" id="email" name="email" [(ngModel)]="formObj.email" #email>-->
-                        <mat-form-field>
-                            <input matInput type="email" placeholder="Email" id="email" name="email" [(ngModel)]="formObj.email" #email>
-                        </mat-form-field>
-                        <mat-form-field>
-                            <input matInput type="text" placeholder="Phone Number" id="number" name="number" [(ngModel)]="formObj.number" #number>
-                        </mat-form-field>
-                    </div>
-                    <button type="submit">Submit Form</button>
-                    <button type="button" (click)="someother()">Some other button</button>
-                </form>
             </div>
         </div>
     </div>
 </section>
+
+<div class="modal" *ngIf="showModal">
+    <div class="modal-guts">
+        Modal
+        <button (click)="showModal=false">Close</button>
+    </div>
+</div>
+<div class="modal-overlay" (click)="showModal=false" *ngIf="showModal"></div>
 

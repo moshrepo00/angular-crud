@@ -17,6 +17,8 @@ export class CheckoutComponent implements OnInit {
         number: ''
     };
 
+    showModal: boolean;
+
     currentEvent: Array<any>;
     //
     // checkout(eventId, ticketId, available, selected) {
