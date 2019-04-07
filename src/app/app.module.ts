@@ -12,7 +12,6 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
-import {MatInputModule} from '@angular/material';
 
 
 @NgModule({
