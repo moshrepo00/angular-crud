@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+    apiUrl: 'https://angular-event.herokuapp.com',
+    production: true
 };
