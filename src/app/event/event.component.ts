@@ -19,7 +19,7 @@ export class EventComponent implements OnInit {
     }
 
     activateModal() {
-        console.log('clicked');
+        // console.log('clicked');
         this.showModal = true;
     }
 
@@ -50,11 +50,11 @@ export class EventComponent implements OnInit {
                     if (+ticket.available) {
                         ticket.available = +ticket.available;
                     } else if (ticket.available === '0') {
-                        console.log('in here');
+                        // console.log('in here');
                         ticket.available = 0;
                     }
                 });
-                console.log('testing current event', this.dataService.currentEvent);
+                // console.log('testing current event', this.dataService.currentEvent);
             });
 
     }
