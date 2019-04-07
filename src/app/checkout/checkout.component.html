@@ -1,15 +1,66 @@
-<!--<form (ngSubmit)="onSubmit()" #checkoutForm="ngForm">-->
-<!--<label for="firstName">First Name</label>-->
-<!--<input type="text" id="firstName" name="firstName" [(ngModel)]="formObj.firstName" #firstName>-->
-<!--<label for="lastName">Last Name</label>-->
-<!--<input type="text" id="lastName" name="lastName" [(ngModel)]="formObj.lastName" #lastName>-->
+<section class="checkout-component" *ngIf="dataService.currentEvent">
+    <div class="container">
+        <div *ngFor="let event of dataService.currentEvent; let i = index;">
+            <div>
+                <img [src]="event?.image" width="100%" height="300px" alt="">
+            </div>
+            <div class="content-container">
+                <h1 class="title">
+                    {{event?.name}}
+                </h1>
+                <div>
+                    <h2>Tickets: </h2>
+                    <ul class="list">
+                        <li *ngFor="let ticket of event?.tickets" class="ticket">
+                            <div class="ticket-info">
+                                <div>{{ticket?.name}}: {{ticket.selected}}</div>
+                            </div>
+                            <!--<div class="material-field">-->
+                            <!--<mat-form-field>-->
+                            <!--<input-->
+                            <!--matInput-->
+                            <!--type="number"-->
+                            <!--min="0"-->
+                            <!--placeholder="*Select Quantity"-->
+                            <!--(keypress)="preventDef($event)"-->
+                            <!--(change)="handleTicketUpdate()"-->
+                            <!--[max]="ticket?.available"-->
+                            <!--[(ngModel)]="ticket.selected"-->
 
-<!--<label for="email">Email</label>-->
-<!--<input type="email" id="email" name="email" [(ngModel)]="formObj.email" #email>-->
+                            <!--/>-->
+                            <!--</mat-form-field>-->
+                            <!--</div>-->
+                        </li>
+                    </ul>
+                </div>
+                <form (ngSubmit)="onSubmit()" #checkoutForm="ngForm">
+                    <!--<label for="firstName">First Name</label>-->
+                    <!--<input type="text" id="firstName" name="firstName" [(ngModel)]="formObj.firstName" #firstName>-->
+                    <div class="material-field">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="First Name" id="firstName" name="firstName" [(ngModel)]="formObj.firstName" #firstName>
+                        </mat-form-field>
 
-<!--<label for="phoneNumber">Phone Number</label>-->
-<!--<input type="number" id="phoneNumber" name="phoneNumber" [(ngModel)]="formObj.number" #number>-->
+                        <!--<label for="lastName">Last Name</label>-->
+                        <!--<input type="text" id="lastName" name="lastName" [(ngModel)]="formObj.lastName" #lastName>-->
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Last Name" id="lastName" name="lastName" [(ngModel)]="formObj.lastName" #lastName>
+                        </mat-form-field>
 
-<!--<button type="submit">Submit Form</button>-->
-<!--<button type="button" (click)="someother()">Some other button</button>-->
-<!--</form>-->
+                        <!--<label for="email">Email</label>-->
+                        <!--<input type="email" id="email" name="email" [(ngModel)]="formObj.email" #email>-->
+                        <mat-form-field>
+                            <input matInput type="email" placeholder="Email" id="email" name="email" [(ngModel)]="formObj.email" #email>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Phone Number" id="number" name="number" [(ngModel)]="formObj.number" #number>
+                        </mat-form-field>
+                    </div>
+                    <button type="submit">Submit Form</button>
+                    <button type="button" (click)="someother()">Some other button</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+

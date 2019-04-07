@@ -12,25 +12,23 @@ import * as moment from 'moment';
 })
 export class EventComponent implements OnInit {
     currentEvent: Array<any>;
+    ticketSelected: boolean;
 
     constructor(public router: Router, public dataService: DataProviderService) {
     }
 
-    checkout(eventId, ticketId, available, selected) {
-        console.log(eventId, ticketId, available, selected);
-        this.dataService.updateTickets(eventId, ticketId, available, selected)
-            .subscribe((data) => console.log('ticket updated'));
+    handleTicketUpdate() {
+        this.ticketSelected = false;
+        this.dataService.currentEvent[0].tickets.forEach((ticket) => {
+            if (ticket.selected) {
+                this.ticketSelected = true;
+            }
+        });
+
     }
 
-    updateAllTickets() {
-        console.log('update all tickets', this.currentEvent);
-        const observableArr = [];
-        this.currentEvent[0].tickets.forEach((item) => {
-            const observable = this.dataService.updateTickets(this.currentEvent[0]._id, item._id, item.available, item.selected);
-            observableArr.push(observable);
-        });
-        forkJoin(observableArr)
-            .subscribe(() => console.log('tickets updated'));
+    preventDef(event) {
+        event.preventDefault();
     }
 
     ngOnInit() {
@@ -38,13 +36,16 @@ export class EventComponent implements OnInit {
         this.dataService.getEvents()
             .subscribe((data: Array<any>) => {
                 this.dataService.currentEvent = data.filter((event: any) => this.router.url === event.url);
-                this.dataService.currentEvent[0].date = moment(this.dataService.currentEvent[0].date).format('D MMM (ddd) YYYY hA');
+                if (moment(this.dataService.currentEvent[0].date).format('D MMM (ddd) YYYY hA') !== 'Invalid date') {
+                    this.dataService.currentEvent[0].date = moment(this.dataService.currentEvent[0].date).format('D MMM (ddd) YYYY hA');
+                }
                 this.dataService.currentEvent[0].tickets.forEach((ticket) => {
                     ticket.selected = 0;
                     if (+ticket.available) {
                         ticket.available = +ticket.available;
-                    } else {
-                        // ticket.available = 0;
+                    } else if (ticket.available === '0') {
+                        console.log('in here');
+                        ticket.available = 0;
                     }
                 });
                 console.log('testing current event', this.dataService.currentEvent);

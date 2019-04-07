@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {DataProviderService} from '../data-provider.service';
+import {forkJoin} from 'rxjs';
 
 @Component({
     selector: 'app-checkout',
@@ -9,25 +10,45 @@ import {DataProviderService} from '../data-provider.service';
 })
 export class CheckoutComponent implements OnInit {
 
-    formObj = {};
+    formObj = {
+        firstName: '',
+        lastName: '',
+        email: '',
+        number: ''
+    };
 
     currentEvent: Array<any>;
+    //
+    // checkout(eventId, ticketId, available, selected) {
+    //     console.log(eventId, ticketId, available, selected);
+    //     this.dataService.updateTickets(eventId, ticketId, available, selected)
+    //         .subscribe((data) => console.log('ticket updated'));
+    // }
 
-    onSubmit() {
-        console.log('type submit button');
-    }
-
-    someother() {
-        console.log('some other');
+    updateAllTickets() {
+        console.log('update all tickets', this.dataService.currentEvent);
+        const observableArr = [];
+        this.dataService.currentEvent[0].tickets.forEach((item) => {
+            if (item.available !== 'null') {
+                const observable = this.dataService.updateTickets(this.dataService.currentEvent[0]._id, item._id, item.available, item.selected);
+                observableArr.push(observable);
+            }
+        });
+        forkJoin(observableArr)
+            .subscribe(() => console.log('tickets updated'));
     }
 
     constructor(public router: Router, public dataService: DataProviderService) {
     }
 
     ngOnInit() {
+
         this.dataService.getEvents()
             .subscribe((data: Array<any>) => {
-                this.dataService.currentEvent = data.filter((event: any) => this.router.url.includes(event.url));
+                this.currentEvent = data.filter((event: any) => this.router.url.includes(event.url));
+                if (!this.dataService.currentEvent) {
+                    this.router.navigate([this.currentEvent[0].url]);
+                }
                 console.log('testing current event', this.currentEvent);
             });
 

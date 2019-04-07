@@ -56,6 +56,8 @@
                                             type="number"
                                             min="0"
                                             placeholder="*Select Quantity"
+                                            (keypress)="preventDef($event)"
+                                            (change)="handleTicketUpdate()"
                                             [max]="ticket?.available"
                                             [(ngModel)]="ticket.selected"
 
@@ -66,7 +68,7 @@
                     </ul>
                 </div>
                 <div>
-                    <button [routerLink]="[event?.url, 'checkout']" mat-raised-button color="primary">Checkout</button>
+                    <button [routerLink]="[event?.url, 'checkout']" mat-raised-button color="primary" [disabled]="!ticketSelected">Checkout</button>
                 </div>
             </div>
         </div>
