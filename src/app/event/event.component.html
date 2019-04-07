@@ -8,12 +8,33 @@
                 <h1 class="title">
                     {{event?.name}}
                 </h1>
-                <p>
-                    {{event?.date}}
-                </p>
-                <p>
-                    {{event?.location}}
-                </p>
+                <div>
+                    <span>
+                          <fa name="calendar"></fa>
+                    </span>
+                    <span>
+                        {{event?.date}}
+                    </span>
+                </div>
+                <div>
+                    <span>
+                       <fa name="map-marker" class="fa-lg"></fa>
+                    </span>
+                    <a [href]="'http://www.google.com/search?q=' + event?.location" target="_blank">
+                        {{event?.location}}
+                    </a>
+                </div>
+                <div class="share">
+                    <p>
+                        Share
+                    </p>
+                    <div class="share-icons">
+                        <fa name="facebook" class="fa-lg"></fa>
+                        <fa name="twitter" class="fa-lg"></fa>
+                        <fa name="envelope" class="fa-lg"></fa>
+                        <fa name="linkedin" class="fa-lg"></fa>
+                    </div>
+                </div>
                 <p>
                     {{event?.description}}
                 </p>
@@ -21,22 +42,23 @@
                     <h2>Tickets: </h2>
                     <ul>
                         <li *ngFor="let ticket of event?.tickets">
-                        <span>
-                            {{ticket?.name}}
-                        </span>
-                            <span>
-                            <input type="number" min="0" [max]="ticket?.available" [(ngModel)]="ticket.selected">
-                        </span>
-                            <span>
-                            Tickets remaining: {{ticket?.available - ticket.selected}}
-                        </span>
-                            <button (click)="checkout(event?._id, ticket?._id, ticket?.available, ticket?.selected)">Check out</button>
+                            <span>{{ticket?.name}}</span>
+                            <mat-form-field>
+                                <input
+                                        matInput
+                                        type="number"
+                                        min="0"
+                                        [max]="ticket?.available"
+                                        [(ngModel)]="ticket.selected"
+
+                                />
+                            </mat-form-field>
+                            <span>Tickets remaining: {{ticket?.available - ticket.selected}}</span>
                         </li>
                     </ul>
                 </div>
-                <button (click)="updateAllTickets()">Update all tickets</button>
                 <div>
-                    <button [routerLink]="[event?.url, 'checkout']">Checkout</button>
+                    <button [routerLink]="[event?.url, 'checkout']" mat-raised-button color="primary">Checkout</button>
                 </div>
             </div>
         </div>

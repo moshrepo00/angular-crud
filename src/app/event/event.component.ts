@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {DataProviderService} from '../data-provider.service';
 import {forkJoin} from 'rxjs';
+import * as moment from 'moment';
 
 
 @Component({
@@ -33,10 +34,11 @@ export class EventComponent implements OnInit {
     }
 
     ngOnInit() {
+        // const myDate = moment('2019-06-01 19:00:00').format('D MMM (ddd) YYYY hA');
         this.dataService.getEvents()
             .subscribe((data: Array<any>) => {
                 this.currentEvent = data.filter((event: any) => this.router.url === event.url);
-                // this.currentEvent = this.currentEvent((event) => this.)
+                this.currentEvent[0].date = moment(this.currentEvent[0].date).format('D MMM (ddd) YYYY hA');
                 this.currentEvent[0].tickets.forEach((ticket) => {
                     ticket.selected = 0;
                     if (+ticket.available) {
