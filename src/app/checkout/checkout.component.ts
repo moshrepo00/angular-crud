@@ -46,6 +46,10 @@ export class CheckoutComponent implements OnInit {
     constructor(public router: Router, public dataService: DataProviderService) {
     }
 
+    navigate() {
+        this.router.navigate(['/']);
+    }
+
     ngOnInit() {
 
         this.dataService.getEvents()

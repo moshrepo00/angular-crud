@@ -81,9 +81,9 @@
             Please view the network tab to double check :=)
         </div>
         <div>
-            <button mat-raised-button color="primary" (click)="showModal=false">Checkout</button>
+            <button mat-raised-button color="primary" (click)="showModal=false; navigate()">Checkout</button>
         </div>
     </div>
 </div>
-<div class="modal-overlay" (click)="showModal=false" *ngIf="showModal"></div>
+<div class="modal-overlay" (click)="showModal=false; navigate()" *ngIf="showModal"></div>
 
