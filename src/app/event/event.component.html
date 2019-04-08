@@ -10,7 +10,9 @@
                 </h1>
                 <div class="items">
                     <span>
-                          <!--<fa name="calendar"></fa>-->
+                        <i class="fas fa-calendar-alt"></i>
+
+                        <!--<fa name="calendar"></fa>-->
                     </span>
                     <span>
                         {{event?.date}}
@@ -18,7 +20,7 @@
                 </div>
                 <div class="items">
                     <span>
-                       <!--<fa name="map-marker" class="fa-lg"></fa>-->
+                        <i class="fas fa-map-marker-alt"></i>
                     </span>
                     <a [href]="'http://www.google.com/search?q=' + event?.location" target="_blank">
                         {{event?.location}}
@@ -29,6 +31,16 @@
                         Share:
                     </h2>
                     <div class="share-icons">
+                        <span class="icon">
+                            <i class="fab fa-facebook-f"></i>
+
+                        </span>
+
+                        <span class="icon">
+                            <i class="fab fa-twitter"></i>
+                        </span>
+
+
                         <!--<fa name="facebook" class="fa-lg icon"></fa>-->
                         <!--<fa name="twitter" class="fa-lg icon"></fa>-->
                         <!--<fa name="envelope" class="fa-lg icon"></fa>-->

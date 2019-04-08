@@ -12,6 +12,7 @@ import {CheckoutComponent} from './checkout/checkout.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {MatInputModule} from '@angular/material/input';
         // AngularFontAwesomeModule,
         BrowserAnimationsModule,
         MatButtonModule,
-        MatInputModule
+        MatInputModule,
+        MatIconModule
     ],
     providers: [],
     bootstrap: [AppComponent]
