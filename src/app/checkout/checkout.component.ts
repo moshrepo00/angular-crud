@@ -48,6 +48,7 @@ export class CheckoutComponent implements OnInit {
 
     navigate() {
         this.router.navigate(['/']);
+        location.reload();
     }
 
     ngOnInit() {
