@@ -14,6 +14,12 @@ export class AppComponent {
 
 
     constructor(public router: Router, public dataService: DataProviderService) {
+        this.router.events.subscribe((evt) => {
+            if (!(evt instanceof NavigationEnd)) {
+                return;
+            }
+            window.scrollTo(0, 0);
+        });
         this.dataService.getEvents()
             .subscribe((data: Array<any>) => {
                 // console.log('app component', data);
