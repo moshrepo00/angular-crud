@@ -13,6 +13,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {MatIconModule} from '@angular/material/icon';
         AppComponent,
         HomeComponent,
         EventComponent,
-        CheckoutComponent
+        CheckoutComponent,
+        LoginComponent
     ],
     imports: [
         BrowserModule,

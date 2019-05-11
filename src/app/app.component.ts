@@ -22,6 +22,7 @@ export class AppComponent {
         });
         this.dataService.getEvents()
             .subscribe((data: Array<any>) => {
+                console.log('data returned', data);
                 // console.log('app component', data);
                 this.dataService.events = data;
             });

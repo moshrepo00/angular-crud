@@ -10,7 +10,10 @@ import {DataProviderService} from '../data-provider.service';
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+    loginFormObj = {
+        name: '',
+        email: ''
+    };
 
     constructor(public dataService: DataProviderService) {
     }
